@@ -15,15 +15,21 @@ void star() {
         printf("\n");
     }
     // 감소
-
-    // ↓ 위 식을 수행하는 코드
-    // int star;
-    // if (i<=3) {
-    //      star = i
+    // ↑ 위는 fot문 4개 사용
+    // ↓ 아래는 for문 1개 사용
+    // for (int i=1; i<7; i++) {
+    //     int star;
+    //     if (i<=3) {
+    //         star = i
+    //     }
+    //     else {
+    //         star = 7-i;
+    //     }
+    //     for (intj=1; j<=star; j++) {
+    //         printf("*"); 
+    //     }
+    //     printf("\n");
     // }
-    // else { star = 7-i;}
-    // for ( intj=1; j<=star; j++) { printf("*"); }
-    // printf("\n");
 
 }
 
