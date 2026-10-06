@@ -4,7 +4,7 @@
 
 void selectionsort(int arr[], int sizearr) {
     int listposition = 0;
-    int j;
+    int j; // 이하 arr[j+1]~~ 구문을 위해, 이곳에서 선언
     for (int i=1; i<sizearr; i++) {
         listposition = arr[i];
         for (j=i-1; j>=0 && arr[j]>listposition; j--) { // 이하 = 작업 반복
