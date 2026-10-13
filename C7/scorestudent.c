@@ -3,7 +3,7 @@
 #define MAX_SIZE 50
 
 void bubblejunglur(int*arr, int size) {
-    //버블 정렬
+    //버블 정렬 코드가 기억 안남 => 주석처리
 }
 
 int main() {
