@@ -3,7 +3,15 @@
 #define MAX_SIZE 50
 
 void bubblejunglur(int*arr, int size) {
-    //버블 정렬 코드가 기억 안남 => 주석처리
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if(*(arr + j) > *(arr + J + 1)) {
+                int temp = *(arr+j);
+                *(arr+j) = *(arr+j+1)
+                i(arr+j+i) = temp;
+            }
+        }
+    }
 }
 
 int main() {
