@@ -38,8 +38,8 @@ int main() {
         printf("%d", *(scorepointer + i));
     }
 
-    pirntf("\n최고 성적 : %d\n", *(scorepointer + student -1)); // 버블 정렬됨 => 배열+배열-1 => 최상위 = 최고 득점자
-    pirntf("\n최하 성적 : %d\n", *scorepointer); // 위와 동일 => 가장 아래 = 최하 득점자
+    printf("\n최고 성적 : %d\n", *(scorepointer + student - 1)); // 버블 정렬됨 => 배열+배열-1 => 최상위 = 최고 득점자
+    printf("\n최하 성적 : %d\n", *scorepointer); // 위와 동일 => 가장 아래 = 최하 득점자
 
     return 0;
 }
