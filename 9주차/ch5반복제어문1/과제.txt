@@ -1,0 +1,108 @@
+// 1번 문제
+#include <stdio.h>
+
+int main() {
+    char ch = 65;
+    while (ch < 91) {
+        printf("%c", ch);
+        ch++;
+    }
+}
+
+// 2번 문제
+#include <stdio.h>
+
+int main() {
+    int ch = 1;
+    while (ch < 16) {
+        printf("%d ", ch);
+        ch++;
+    }
+}
+
+// 3번 문제
+#include <stdio.h>
+
+int main() {
+    int num = 1;
+    int sum = 0;
+    while (num < 11) {
+        sum += num;
+        num++;
+    }
+    printf("sum = %d\nnum = %d", sum, num);
+}
+
+// 4번 문제
+  #include <stdio.h>
+
+int main() {
+    int num;
+    scanf("%d", &num);
+    int sum = 0;
+    int num2 = 1;
+    while (num2 <= num) {
+        sum += num2;
+        num2++;
+    }
+    printf("sum = %d", sum);
+}
+
+// 5번 문제
+#include <stdio.h>
+
+int main() {
+    int score;
+    while (1) {
+        scanf("%d", &score);
+        if (score > 100 || score < 0) {
+            break;
+        }
+        if (score >= 80) {
+            printf("Pass");
+        }
+        else {
+            printf("Fail");
+        }
+    }
+}
+
+// 6번 문제
+#include <stdio.h>
+
+int main() {
+    int score;
+    while (1) {
+        scanf("%d", &score);
+        if (score == 0) {
+            break;
+        }
+        if (score > 0) {
+            printf("Positive number");
+        }
+        else if (score < 0) {
+            printf("Negative number");
+        }
+    }
+}
+
+// 7번 문제
+#include <stdio.h>
+
+int main() {
+    int score = 0;
+    int score_check;
+    int loop = 0;
+    while (1) {
+        scanf("%d", &score_check);
+        if (score_check == 0) {
+            break;
+        }
+        
+        score += score_check;
+        loop++;
+    }
+    printf("cnt = %d\nsum = %d\navg = %2.f", loop, score,  (double)score/loop);
+}
+
+// 8번 문제
