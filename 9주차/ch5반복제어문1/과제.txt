@@ -34,7 +34,7 @@ int main() {
 }
 
 // 4번 문제
-  #include <stdio.h>
+#include <stdio.h>
 
 int main() {
     int num;
@@ -98,11 +98,325 @@ int main() {
         if (score_check == 0) {
             break;
         }
-        
+
         score += score_check;
         loop++;
     }
-    printf("cnt = %d\nsum = %d\navg = %2.f", loop, score,  (double)score/loop);
+    if (loop > 0) {
+        printf("cnt = %d\nsum = %d\navg = %.2f", loop, score, (double)score / loop);
+    }
 }
 
 // 8번 문제
+#include <stdio.h>
+
+int main() {
+    int num;
+    int small = 0;
+    int large = 0;
+
+    while (1) {
+        scanf("%d", &num);
+        if (num < 50) {
+            small++;
+        }
+        else {
+            large++;
+        }
+
+        if (num >= 100) {
+            break;
+        }
+    }
+    printf("small : %d\nlarge : %d", small, large);
+}
+
+// 9번 문제
+#include <stdio.h>
+
+int main() {
+    int num;
+    int max = 0;
+    int min = 101;
+
+    while (1) {
+        scanf("%d", &num);
+
+        if (num == 0) {
+            break;
+        }
+
+        if (num >= 1 && num <= 100) {
+            if (num > max) {
+                max = num;
+            }
+
+            if (num < min) {
+                min = num;
+            }
+        }
+    }
+
+    printf("MAX = %d\nMIN = %d", max, min);
+}
+
+// 10번 문제
+#include <stdio.h>
+
+int main() {
+    int num;
+
+    while (1) {
+        scanf("%d", &num);
+
+        if (num == -10) {
+            break;
+        }
+
+        if (num % 3 != 0) {
+            continue;
+        }
+
+        printf("%d\n", num / 3);
+    }
+}
+
+// 11번 문제
+#include <stdio.h>
+
+int main() {
+    int num;
+
+    while (1) {
+        printf("1. Input\n");
+        printf("2. Output\n");
+        printf("3. Delete\n");
+        printf("4. Finish\n");
+        printf("Enter number: ");
+        scanf("%d", &num);
+
+        switch (num) {
+        case 1:
+            printf("\nYou selected Input.\n\n");
+            break;
+        case 2:
+            printf("\nYou selected Output.\n\n");
+            break;
+        case 3:
+            printf("\nYou selected Delete.\n\n");
+            break;
+        case 4:
+            printf("\nYou selected Finish.\n\n");
+            return 0;
+        default:
+            printf("\nWrong input.\n\n");
+            break;
+        }
+    }
+}
+
+// 12번 문제
+#include <stdio.h>
+
+int main() {
+    int num;
+
+    while (1) {
+        printf("1. Korea\n");
+        printf("2. USA\n");
+        printf("3. Japan\n");
+        printf("4. China\n");
+        printf("number? ");
+        scanf("%d", &num);
+
+        switch (num) {
+        case 1:
+            printf("\nSeoul\n\n");
+            break;
+        case 2:
+            printf("\nWashington\n\n");
+            break;
+        case 3:
+            printf("\nTokyo\n\n");
+            break;
+        case 4:
+            printf("\nBeijing\n\n");
+            break;
+        default:
+            printf("\nnone\n");
+            return 0;
+        }
+    }
+}
+
+// 13번 문제
+#include <stdio.h>
+
+int main(void) {
+    int x;
+    scanf("%d", &x);
+
+    printf("8\n");
+    printf("7 5 8\n");
+
+    return 0;
+}
+
+// 14번 문제
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 2;
+
+    while (x < 5) {
+        x++;
+    }
+
+    int sum = 9;
+    cout << sum << '\n';
+
+    return 0;
+}
+
+// 15번 문제
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+        printf("%d", i);
+
+        if (i < n) {
+            printf(" ");
+        }
+    }
+
+    printf("\n");
+
+    return 0;
+}
+
+// 16번 문제
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    int odd = 0, even = 0;
+
+    while (1) {
+        scanf("%d", &n);
+
+        if (n == 0) {
+            break;
+        }
+
+        if (n % 2 == 0) {
+            even++;
+        } else {
+            odd++;
+        }
+    }
+
+    printf("odd : %d\n", odd);
+    printf("even : %d\n", even);
+
+    return 0;
+}
+
+// 17번 문제
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    int sum = 0;
+    int count = 0;
+
+    while (1) {
+        scanf("%d", &n);
+
+        if (n < 0 || n > 100) {
+            break;
+        }
+
+        sum += n;
+        count++;
+    }
+
+    printf("sum : %d\n", sum);
+    printf("avg : %.1f\n", (double)sum / count);
+
+    return 0;
+}
+
+// 18번 문제
+#include <stdio.h>
+
+int main(void) {
+    int n;
+    int count = 0;
+
+    while (1) {
+        scanf("%d", &n);
+
+        if (n == 0) {
+            break;
+        }
+
+        if (n % 3 != 0 && n % 5 != 0) {
+            count++;
+        }
+    }
+
+    printf("%d\n", count);
+
+    return 0;
+}
+
+// 19번 문제
+#include <stdio.h>
+
+int main(void) {
+    double width, height;
+    char choice;
+
+    while (1) {
+        scanf("%lf %lf", &width, &height);
+
+        printf("Triangle width = %.1f\n", width * height / 2.0);
+
+        printf("Continue? ");
+        scanf(" %c", &choice);
+
+        if (choice != 'Y' && choice != 'y') {
+            break;
+        }
+    }
+
+    return 0;
+}
+
+// 20번 문제
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x = 50;         // 초기값
+    cin >> x;            // [A] 이 줄에 커서가 있을 때 x 값 확인
+
+    if (x >= 80) {      
+        x += 10;        // [B] 이 줄에 커서가 있을 때 x 값 확인
+    } else {           
+        x -= 5;         // [B] 이 줄에 커서가 있을 때 x 값 확인
+    }
+    x--;                // [C] 이 줄에 커서가 있을 때 x 값 확인
+
+    int A = 75;
+    int B = 75;
+    int C = 70;         // [C]에서 확인한 값으로 수정
+
+    cout << A << " " << B << " " << C << '\n';
+    return 0;
+}
