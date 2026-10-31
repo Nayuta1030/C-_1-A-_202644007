@@ -4,10 +4,12 @@
 int main() {
     int c4;
     scanf("%d", &c4);
+    printf("%d\n", c4);
     if (c4 > 10) {
         printf("Larger than 10.");
     }
 }
+
 
 // 2번 문제
 #include <stdio.h>
@@ -15,11 +17,12 @@ int main() {
 int main() {
     int c4;
     scanf("%d", &c4);
-    printf("%d", c4);
+    printf("%d\n", c4);
     if (c4 < 0) {
         printf("minus");
     }
 }
+
 
 // 3번 문제
 #include <stdio.h>
@@ -28,10 +31,11 @@ int main() {
     int c4;
     scanf("%d", &c4);
     if (c4 > 0) {
-        printf("Input value : %d", c4);
+        printf("Input value : %d\n", c4);
         printf("Positive number");
     }
 }
+
 
 // 4번 문제
 #include <stdio.h>
@@ -46,6 +50,7 @@ int main() {
     }
 }
 
+
 // 5번 문제
 #include <stdio.h>
 
@@ -59,6 +64,7 @@ int main() {
         printf("Failed.");
     }
 }
+
 
 // 6번 문제
 #include <stdio.h>
@@ -75,6 +81,7 @@ int main() {
     }
 }
 
+
 // 7번 문제
 #include <stdio.h>
 
@@ -82,7 +89,7 @@ int main() {
     int c4;
     char grades;
     scanf("%d", &c4);
-    
+
     switch (c4 / 10) {
     case 10:
         grades = 'A';
@@ -106,30 +113,29 @@ int main() {
     printf("%c", grades);
 }
 
+
 // 8번 문제
 #include <stdio.h>
 
 int main() {
     int c4;
-    char grades;
     scanf("%d", &c4);
-    
+
     switch (c4 / 10) {
     case 10:
     case 9:
-        grades = 'Excellent';
+        printf("Excellent"); 
         break;
     case 8:
-        grades = 'Good';
+        printf("Good"); 
         break;
     case 7:
-        grades = 'Pass';
+        printf("Pass"); 
         break;
     default:
-        grades = 'Fail';
+        printf("Fail"); 
         break;
     }
-    printf("%c", grades);
 }
 
 // 9번 문제
@@ -138,7 +144,7 @@ int main() {
 int main() {
     int c4, c42;
     scanf("%d %d", &c4, &c42);
-    
+
     if (c4 >= 4 && c42 >= 4) {
         printf("Win.");
     }
@@ -150,6 +156,7 @@ int main() {
     }
 }
 
+
 // 10번 문제
 #include <stdio.h>
 
@@ -160,13 +167,14 @@ int main() {
     if (c4 > 0 && c42 > 0 && c43 > 0) {
         printf("All Positive");
     }
-    else if (c4 = 0 || c42 = 0 || c43 = 0) {
+    else if (c4 == 0 || c42 == 0 || c43 == 0) { 
         printf("Contain Zero");
     }
     else {
         printf("Mixed");
     }
 }
+
 
 // 11번 문제
 #include <stdio.h>
@@ -198,6 +206,7 @@ int main() {
     return 0;
 }
 
+
 // 12번 문제
 #include <stdio.h>
 
@@ -206,7 +215,7 @@ int main() {
     scanf("%d", &c4);
 
     if (c4 > 0) {
-        if (c4 % 2 = 0) {
+        if (c4 % 2 == 0) { 
             printf("Even Number");
         }
         else {
@@ -219,6 +228,7 @@ int main() {
     return 0;
 }
 
+
 // 13번 문제
 #include <stdio.h>
 
@@ -226,19 +236,20 @@ int main() {
     int c4;
     scanf("%d", &c4);
 
-    if (c4 = 1) {
+    if (c4 == 1) { 
         printf("ADD");
     }
-    else if (c4 = 2) {
+    else if (c4 == 2) { 
         printf("EDIT");
     }
-    else if (c4 = 3) {
+    else if (c4 == 3) { 
         printf("DEL");
     }
     else {
         printf("Wrong choice.");
     }
 }
+
 
 // 14번 문제
 #include <stdio.h>
@@ -247,19 +258,20 @@ int main() {
     char c4;
     scanf("%c", &c4);
 
-    if (c4 = 'A') {
+    if (c4 == 'A') { 
         printf("Excellent");
     }
-    else if (c4 = 'B') {
+    else if (c4 == 'B') { 
         printf("Good");
     }
-    else if (c4 = 'C') {
+    else if (c4 == 'C') { 
         printf("Usually");
     }
     else {
         printf("404 not found error.");
     }
 }
+
 
 // 15번 문제
 #include <stdio.h>
@@ -268,7 +280,7 @@ int main() {
     int c4;
     char grades;
     scanf("%d", &c4);
-    
+
     switch (c4 / 10) {
     case 10:
     case 9:
@@ -290,17 +302,18 @@ int main() {
     printf("%c", grades);
 }
 
+
 // 16번 문제
 #include <stdio.h>
 
 int main() {
     float c4;
     printf("0.0 ~ 4.5 사이의 평점을 적어주세요.\n");
-    scanf("%d", &c4);
-    
+    scanf("%f", &c4); 
+
     if (c4 > 4.5 || c4 < 0) {
         printf("기재 범위가 아닙니다.");
-        break;
+        return 0; 
     }
     else {
         if (c4 >= 4.0) {
@@ -324,9 +337,10 @@ int main() {
 int main() {
     int c4, c42;
     scanf("%d %d", &c4, &c42);
-    
+
     printf("%d", c4 > c42 ? c4 : c42);
 }
+
 
 // 18번 문제
 #include <stdio.h>
@@ -334,7 +348,7 @@ int main() {
 int main() {
     int c4, c42, c43;
     scanf("%d %d %d", &c4, &c42, &c43);
-    
+
     int temp;
     temp = c4 > c42 ? c42 : c4;
     temp = temp > c43 ? c43 : temp;
@@ -342,18 +356,20 @@ int main() {
     return 0;
 }
 
+
 // 19번 문제
 #include <stdio.h>
 
 int main() {
     int c4, c42;
     scanf("%d %d", &c4, &c42);
-    
+
     int temp;
     temp = c4 > c42 ? c4 - c42 : c42 - c4;
     printf("%d", temp);
     return 0;
 }
+
 
 // 20번 문제
 #include <stdio.h>
@@ -362,7 +378,7 @@ int main() {
     int c4;
     scanf("%d", &c4);
 
-    if (c4 = 0 ) {
+    if (c4 == 0) { 
         printf("Zero");
     }
     else if (c4 > 0) {
@@ -372,6 +388,7 @@ int main() {
         printf("minus");
     }
 }
+
 
 // 21번 문제
 #include <stdio.h>
@@ -389,33 +406,35 @@ int main()
     }
 }
 
+
 // 22번 문제
 #include <stdio.h>
 
 int main()
 {
     int c4;
-    char c42;
+    char *c42; 
     scanf("%d", &c4);
 
     switch (c4) {
     case 1:
-        c42 = 'dog';
+        c42 = "dog"; 
         break;
     case 2:
-        c42 = 'cat';
+        c42 = "cat"; 
         break;
     case 3:
-        c42 = 'chink';
+        c42 = "chink"; 
         break;
     default:
-        c42 = 'black'
+        c42 = "black"; 
         break;
     }
 
-    printf("%c", c42);
+    printf("%s", c42); 
     return 0;
 }
+
 
 // 23번 문제
 #include <stdio.h>
@@ -426,15 +445,23 @@ int main()
     int c42;
     scanf("%d", &c4);
 
-    switch (c4 % 2) {
-    case 0:
-        if (c4 == 2) {
-            c42 = 28;
-            break;
-        }
+    switch (c4) { 
+    case 2:
+        c42 = 28;
+        break;
+    case 4:
+    case 6:
+    case 9:
+    case 11:
         c42 = 30;
         break;
     case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12:
         c42 = 31;
         break;
     }
@@ -443,11 +470,11 @@ int main()
     return 0;
 }
 
+
 // 24번 문제
 #include <stdio.h>
 
-int main()
-{
+int main() {
     int c4;
     scanf("%d", &c4);
 
