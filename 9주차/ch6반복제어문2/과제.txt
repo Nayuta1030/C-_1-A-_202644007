@@ -62,7 +62,7 @@ int main() {
 // 6번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     scanf("%d", &n);
 
@@ -76,7 +76,7 @@ int main(void) {
 // 7번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int sum = 0;
 
@@ -94,7 +94,7 @@ int main(void) {
 // 8번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int sum = 0;
 
@@ -112,7 +112,7 @@ int main(void) {
 // 9번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int count = 0;
 
@@ -132,7 +132,7 @@ int main(void) {
 // 10번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int count = 0;
 
@@ -152,7 +152,7 @@ int main(void) {
 // 11번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int score;
     int sum = 0;
     double avg;
@@ -173,7 +173,7 @@ int main(void) {
 // 12번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n, score;
     int sum = 0;
     double avg;
@@ -201,7 +201,7 @@ int main(void) {
 // 13번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     for (int i = 1; i <= 5; i++) {
         for (int j = 1; j <= 5; j++) {
             printf("%d ", i);
@@ -224,7 +224,7 @@ int main(void) {
 // 14번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
 
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
@@ -239,7 +239,7 @@ int main(void) {
 // 15번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
 
     for (int i = 1; i <= 9; i++) {
         for (int j = 2; j <= 4; j++) {
@@ -254,7 +254,7 @@ int main(void) {
 // 16번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
 
     for (int i = 2; i <= 4; i++) {
         for (int j = 1; j <= 5; j++) {
@@ -269,7 +269,7 @@ int main(void) {
 // 17번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
 
     scanf("%d", &n);
@@ -284,7 +284,7 @@ int main(void) {
 // 18번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int a, b, temp;
 
     scanf("%d %d", &a, &b);
@@ -303,7 +303,7 @@ int main(void) {
 // 19번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int sum = 0;
 
@@ -323,7 +323,7 @@ int main(void) {
 // 20번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n, num;
     int sum = 0;
     double avg;
@@ -345,7 +345,7 @@ int main(void) {
 // 21번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int num;
     int even = 0;
     int odd = 0;
@@ -369,7 +369,7 @@ int main(void) {
 // 22번 문제
 #include <stdio.h>
 
-int main(void)
+int main()
 {
     int A, B;
     int sum = 0;
@@ -397,7 +397,7 @@ int main(void)
 // 23번 문제
 #include <stdio.h>
 
-int main(void)
+int main()
 {
     int n;
 
@@ -414,7 +414,7 @@ int main(void)
 // 24번 문제
 #include <stdio.h>
 
-int main(void)
+int main()
 {
     int row, col;
 
