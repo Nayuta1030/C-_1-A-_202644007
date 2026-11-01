@@ -252,7 +252,7 @@ int main() {
 // 13번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int x;
     scanf("%d", &x);
 
@@ -263,8 +263,7 @@ int main(void) {
 }
 
 // 14번 문제
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 
 int main() {
     int x = 2;
@@ -274,7 +273,7 @@ int main() {
     }
 
     int sum = 9;
-    cout << sum << '\n';
+    printf("%d\n", sum);
 
     return 0;
 }
@@ -282,7 +281,7 @@ int main() {
 // 15번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     scanf("%d", &n);
 
@@ -302,7 +301,7 @@ int main(void) {
 // 16번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int odd = 0, even = 0;
 
@@ -329,7 +328,7 @@ int main(void) {
 // 17번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int sum = 0;
     int count = 0;
@@ -354,7 +353,7 @@ int main(void) {
 // 18번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     int n;
     int count = 0;
 
@@ -378,7 +377,7 @@ int main(void) {
 // 19번 문제
 #include <stdio.h>
 
-int main(void) {
+int main() {
     double width, height;
     char choice;
 
@@ -399,24 +398,25 @@ int main(void) {
 }
 
 // 20번 문제
-#include <iostream>
-using namespace std;
+#include <stdio.h>
 
 int main() {
     int x = 50;         // 초기값
-    cin >> x;            // [A] 이 줄에 커서가 있을 때 x 값 확인
+    scanf("%d", &x);    // [A] 이 줄에 커서가 있을 때 x 값 확인
 
-    if (x >= 80) {      
+    if (x >= 80) {
         x += 10;        // [B] 이 줄에 커서가 있을 때 x 값 확인
-    } else {           
+    } else {
         x -= 5;         // [B] 이 줄에 커서가 있을 때 x 값 확인
     }
+
     x--;                // [C] 이 줄에 커서가 있을 때 x 값 확인
 
     int A = 75;
     int B = 75;
     int C = 70;         // [C]에서 확인한 값으로 수정
 
-    cout << A << " " << B << " " << C << '\n';
+    printf("%d %d %d\n", A, B, C);
+
     return 0;
 }
