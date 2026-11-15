@@ -1,0 +1,150 @@
+// 1. 다음 코드를 실행했을 때 출력되는 결과로 옳은 것은?
+
+#include <stdio.h>
+
+struct Student {
+    int age;
+    float score;
+};
+
+int main() {
+    struct Student s = {20, 85.5};
+    struct Student *p = &s;
+
+    p->age = 25;
+
+    printf("%d %.1f", s.age, s.score);
+
+    return 0;
+}
+
+// [보기]
+// 1번. 20 85.5
+// 2번. 25 85.5
+// 3번. 25 0.0
+// 4번. ERROR
+
+// 정답: 2번
+
+
+// 2. 다음 코드를 실행했을 때 출력되는 결과로 옳은 것은?
+
+#include <stdio.h>
+
+struct Data {
+    int num;
+    int *ptr;
+};
+
+int main() {
+    int a = 10;
+    struct Data d1 = {20, &a};
+    struct Data d2;
+
+    d2 = d1;
+
+    *d2.ptr = 50;
+
+    printf("%d %d %d", d1.num, d2.num, a);
+
+    return 0;
+}
+
+// [보기]
+// 1번. 20 20 10
+// 2번. 20 20 50
+// 3번. 50 50 50
+// 4번. ERROR
+
+// 정답: 2번
+
+
+// 3. 다음 코드를 실행했을 때 출력되는 결과로 옳은 것은?
+
+#include <stdio.h>
+
+union Data {
+    int num;
+    char ch;
+};
+
+int main() {
+    union Data d;
+
+    d.num = 100;
+    d.ch = 'A';
+
+    printf("%c", d.ch);
+
+    return 0;
+}
+
+// [보기]
+// 1번. 100
+// 2번. A
+// 3번. 0
+// 4번. ERROR
+
+// 정답: 2번
+
+
+// 4. 다음 코드를 실행했을 때 출력되는 결과로 옳은 것은?
+
+#include <stdio.h>
+
+enum Level {
+    LOW = 2,
+    MIDDLE,
+    HIGH = 7,
+    MAX
+};
+
+int main() {
+    enum Level a = LOW;
+    enum Level b = MIDDLE;
+    enum Level c = HIGH;
+    enum Level d = MAX;
+
+    printf("%d %d %d %d", a, b, c, d);
+
+    return 0;
+}
+
+// [보기]
+// 1번. 0 1 2 3
+// 2번. 2 3 7 8
+// 3번. 2 2 7 7
+// 4번. 2 3 4 5
+
+// 정답: 2번
+
+
+// 5. 다음 코드를 실행했을 때 출력되는 결과로 옳은 것은?
+
+#include <stdio.h>
+
+struct Student {
+    int score;
+};
+
+void change(struct Student s) {
+    s.score = 100;
+}
+
+int main() {
+    struct Student s = {20};
+
+    change(s);
+
+    printf("%d", s.score);
+
+    return 0;
+}
+
+// [보기]
+// 1번. 20
+// 2번. 100
+// 3번. 0
+// 4번. ERROR
+
+// 정답: 1번
