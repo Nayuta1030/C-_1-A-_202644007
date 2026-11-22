@@ -1,0 +1,105 @@
+// 예제 14-1
+
+#pragma warning(disable:4996)
+#include <stdio.h>
+
+int main() {
+    FILE* filePtr;
+    char filename[] = "example.txt";
+
+    filePtr = fopen(filename, "w");
+
+    if (filePtr == NULL) {
+        printf("파일을 열 수 없습니다: %s\n", filename);
+        return 1;
+    }
+
+    fprintf(filePtr, "Hello, world!\n");
+    fclose(filePtr);
+    printf("%s 파일에 데이터를 성공적으로 썼습니다.\n", filename);
+
+    return 0;
+}
+
+// 예제 14-2
+
+#pragma warning(disable:4996)
+#include <stdio.h>
+
+int main() {
+    FILE* filePtr;
+    char filename[] = "example.txt";
+    char buffer[100];
+
+    filePtr = fopen(filename, "r");
+
+    if (filePtr == NULL) {
+        printf("파일을 열 수 없습니다: %s\n", filename);
+        return 1;
+    }
+
+    if (fgets(buffer, 100, filePtr) != NULL) {
+        printf("example.txt 파일에서 읽은 내용: %s", buffer);
+    }
+    else {
+        printf("파일에서 읽기 실패.\n");
+    }
+
+    fclose(filePtr);
+
+    return 0;
+}
+
+// 예제 14-5
+
+#pragma warning(disable:4996)
+#include <stdio.h>
+
+int main() {
+    FILE* file;
+
+    char str1[] = "C language, ";
+    char str2[] = "Text File!!!";
+
+    file = fopen("twostring.txt", "w");
+
+    if (file == NULL) {
+        printf("파일을 열 수 없습니다.\n");
+        return 1;
+    }
+
+    fprintf(file, "%s", str1);
+    fprintf(file, "%s", str2);
+    fclose(file);
+    printf("twostring.txt 파일에 문자열 '%s%s'를 성공적으로 썼습니다.\n", str1, str2);
+
+    return 0;
+}
+
+// 14-6번
+
+#pragma warning(disable:4996)
+#include <stdio.h>
+
+int main() {
+    FILE* file;
+    char str1[150];
+
+    file = fopen("twostring.txt", "r");
+
+    if (file == NULL) {
+        printf("파일을 열 수 없습니다.\n");
+        return 1;
+    }
+
+    if (fgets(str1, sizeof(str1), file) == NULL) {
+        printf("첫 번째 문자열을 읽는 데 실패했습니다.\n");
+        fclose(file);
+        return 1;
+    }
+
+    fclose(file);
+    printf("twostring.txt 파일에서 문자열 '%s'를 성공적으로 읽었습니다.\n", str1);
+
+    return 0;
+}
