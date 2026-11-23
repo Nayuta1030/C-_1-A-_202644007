@@ -1,0 +1,487 @@
+// 1번 문제
+#include <stdio.h>
+
+int main() {
+    char name[50];
+    int age;
+
+    scanf("%s", name);
+    scanf("%d", &age);
+
+    printf("Your name is %s and you are %d years old.", name, age);
+
+    return 0;
+}
+
+// 2번 문제
+#include <stdio.h>
+
+int main() {
+    char name[21];
+    char school[21];
+    int grade;
+
+    scanf("%s %s %d", name, school, &grade);
+
+    printf("Name : %s\n", name);
+    printf("School : %s\n", school);
+    printf("Grade : %d\n", grade);
+
+    return 0;
+}
+
+// 3번 문제
+#include <stdio.h>
+
+int main() {
+    char name[50] = "Yejun";
+    int age = 12;
+
+    char friendName[50];
+    int friendAge;
+
+    scanf("%s %d", friendName, &friendAge);
+
+    printf("Your name: %s, age: %d\n", name, age);
+    printf("Friend's name: %s, age: %d\n", friendName, friendAge);
+
+    return 0;
+}
+
+// 4번 문제
+#include <stdio.h>
+
+struct School {
+    char school[50];
+    int grade;
+};
+
+int main() {
+    struct School s1 = {"Jejuelementary", 6};
+    struct School s2;
+
+    scanf("%s %d", s2.school, &s2.grade);
+
+    printf("%d grade in %s School\n", s1.grade, s1.school);
+    printf("%d grade in %s School\n", s2.grade, s2.school);
+
+    return 0;
+}
+
+// 5번 문제
+#include <stdio.h>
+
+struct Person {
+    char name[21];
+    int age;
+};
+
+int main() {
+    struct Person p[3];
+
+    for (int i = 0; i < 3; i++) {
+        scanf("%s %d", p[i].name, &p[i].age);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        printf("Name : %s\n", p[i].name);
+        printf("Age : %d\n", p[i].age);
+    }
+
+    return 0;
+}
+
+// 6번 문제
+#include <stdio.h>
+
+struct Person {
+    char name[21];
+    int height;
+};
+
+int main() {
+    struct Person p[3];
+
+    for (int i = 0; i < 3; i++) {
+        scanf("%s %d", p[i].name, &p[i].height);
+    }
+
+    for (int i = 0; i < 3; i++) {
+        printf("%s : %dcm\n", p[i].name, p[i].height);
+    }
+
+    return 0;
+}
+
+// 7번 문제
+#include <stdio.h>
+
+struct Student {
+    char name[21];
+    int score;
+};
+
+int main() {
+    struct Student s[5];
+    int max = 0;
+
+    for (int i = 0; i < 5; i++) {
+        scanf("%s %d", s[i].name, &s[i].score);
+    }
+
+    for (int i = 1; i < 5; i++) {
+        if (s[i].score > s[max].score) {
+            max = i;
+        }
+    }
+
+    printf("%s %d\n", s[max].name, s[max].score);
+
+    return 0;
+}
+
+// 8번 문제
+#include <stdio.h>
+
+int main(void) {
+    char name[100], minName[100];
+    int height, minHeight = 1000;
+
+    for (int i = 0; i < 5; i++) {
+        scanf("%s %d", name, &height);
+
+        if (height < minHeight) {
+            minHeight = height;
+            strcpy(minName, name);
+        }
+    }
+
+    printf("%s %d\n", minName, minHeight);
+
+    return 0;
+}
+
+// 9번 문제
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[100];
+    int height;
+    double weight;
+};
+
+int main(void) {
+    struct Person p[5], temp;
+
+    for (int i = 0; i < 5; i++) {
+        scanf("%s %d %lf", p[i].name, &p[i].height, &p[i].weight);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4 - i; j++) {
+            if (p[j].height > p[j + 1].height) {
+                temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < 5; i++) {
+        printf("%s %d %.1f\n",
+               p[i].name, p[i].height, p[i].weight);
+    }
+
+    return 0;
+}
+
+// 10번 문제
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[100];
+    int height;
+    double weight;
+};
+
+int main(void) {
+    struct Person p[5], temp;
+
+    for (int i = 0; i < 5; i++) {
+        scanf("%s %d %lf", p[i].name, &p[i].height, &p[i].weight);
+    }
+
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4 - i; j++) {
+            if (strcmp(p[j].name, p[j + 1].name) > 0) {
+                temp = p[j];
+                p[j] = p[j + 1];
+                p[j + 1] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < 5; i++) {
+        printf("%s %d %.1f\n",
+               p[i].name, p[i].height, p[i].weight);
+    }
+
+    return 0;
+}
+
+// 11번 문제
+#include <stdio.h>
+
+int main(void) {
+    double x1, y1, x2, y2;
+    double x, y;
+
+    scanf("%lf %lf", &x1, &y1);
+    scanf("%lf %lf", &x2, &y2);
+
+    x = (x1 + x2) / 2;
+    y = (y1 + y2) / 2;
+
+    printf("Center point = (%.1f, %.1f)\n", x, y);
+
+    return 0;
+}
+
+// 12번 문제
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Score
+{
+    string name;
+    int kor;
+    int eng;
+};
+
+Score plus_(Score a, Score b)
+{
+    Score result;
+
+    result.name = "Total";
+    result.kor = a.kor + b.kor;
+    result.eng = a.eng + b.eng;
+
+    return result;
+}
+
+int main()
+{
+    Score a, b;
+
+    cin >> a.name >> a.kor >> a.eng;
+    cin >> b.name >> b.kor >> b.eng;
+
+    Score result = plus_(a, b);
+
+    cout << a.name << " " << a.kor << " " << a.eng << '\n';
+    cout << b.name << " " << b.kor << " " << b.eng << '\n';
+    cout << result.name << " " << result.kor << " " << result.eng << '\n';
+
+    return 0;
+}
+
+// 13번 문제
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Person {
+    string name;
+    string tel;
+    string addr;
+};
+
+int main() {
+    Person p;
+
+    cin >> p.name >> p.tel >> p.addr;
+
+    cout << "name : " << p.name << '\n';
+    cout << "tel : " << p.tel << '\n';
+    cout << "addr : " << p.addr << '\n';
+
+    return 0;
+}
+
+// 14번 문제
+#include <stdio.h>
+#include <string.h>
+
+struct Person {
+    char name[100];
+    char tel[100];
+    char addr[100];
+};
+
+int main() {
+    struct Person p[3];
+    int min = 0;
+
+    for (int i = 0; i < 3; i++) {
+        scanf("%s %s %s", p[i].name, p[i].tel, p[i].addr);
+    }
+
+    for (int i = 1; i < 3; i++) {
+        if (strcmp(p[i].name, p[min].name) < 0) {
+            min = i;
+        }
+    }
+
+    printf("name : %s\n", p[min].name);
+    printf("tel : %s\n", p[min].tel);
+    printf("addr : %s\n", p[min].addr);
+
+    return 0;
+}
+
+// 15번 문제
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+struct Rectangle {
+    int x1, y1;
+    int x2, y2;
+};
+
+int main() {
+    Rectangle a, b, result;
+
+    cin >> a.x1 >> a.y1 >> a.x2 >> a.y2;
+    cin >> b.x1 >> b.y1 >> b.x2 >> b.y2;
+
+    result.x1 = min(a.x1, b.x1);
+    result.y1 = min(a.y1, b.y1);
+    result.x2 = max(a.x2, b.x2);
+    result.y2 = max(a.y2, b.y2);
+
+    cout << result.x1 << " "
+         << result.y1 << " "
+         << result.x2 << " "
+         << result.y2 << '\n';
+
+    return 0;
+}
+
+// 16번 문제
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+struct Body
+{
+    int height;
+    double weight;
+};
+
+Body makeStudent(Body father, Body mother)
+{
+    Body student;
+
+    student.height = (father.height + mother.height) / 2 + 5;
+
+    student.weight = (father.weight + mother.weight) / 2 - 4.5;
+    student.weight = round(student.weight * 10) / 10.0;
+
+    return student;
+}
+
+int main()
+{
+    Body father, mother;
+
+    cin >> father.height >> father.weight;
+    cin >> mother.height >> mother.weight;
+
+    Body student = makeStudent(father, mother);
+
+    cout << "height : " << student.height << "cm" << '\n';
+
+    cout.setf(ios::fixed);
+    cout.precision(1);
+
+    cout << "weight : " << student.weight << "kg" << '\n';
+
+    return 0;
+}
+
+// 17번 문제
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student
+{
+    string name;
+    int score[3];
+    int total;
+};
+
+void input(Student arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i].name;
+
+        arr[i].total = 0;
+
+        for (int j = 0; j < 3; j++)
+        {
+            cin >> arr[i].score[j];
+            arr[i].total += arr[i].score[j];
+        }
+    }
+}
+
+void sort(Student arr[], int n)
+{
+    Student temp;
+
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = 0; j < n - 1 - i; j++)
+        {
+            if (arr[j].total < arr[j + 1].total)
+            {
+                temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void output(Student arr[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i].name << " "
+             << arr[i].score[0] << " "
+             << arr[i].score[1] << " "
+             << arr[i].score[2] << " "
+             << arr[i].total << '\n';
+    }
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+
+    Student arr[10];
+
+    input(arr, n);
+    sort(arr, n);
+    output(arr, n);
+
+    return 0;
+}
