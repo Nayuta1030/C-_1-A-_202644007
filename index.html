@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GPS 데이터 분석 시스템</title>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: #f4f6f9;
+    color: #222;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+h1 {
+    color: #1e3a5f;
+}
+
+.panel {
+    background: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0001;
+}
+
+.info {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.info div {
+    background: #eaf2ff;
+    padding: 15px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 150px;
+}
+
+.info strong {
+    display: block;
+    font-size: 13px;
+    color: #555;
+}
+
+.info span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1769aa;
+}
+
+#map {
+    width: 100%;
+    height: 500px;
+    min-height: 400px;
+    border-radius: 8px;
+    z-index: 1;
+    background: #e8edf2;
+}
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background: #1e3a5f;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f2f5f9;
+}
+
+button {
+    background: #1769aa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input {
+    margin: 10px 0;
+}
+
+.status {
+    color: #1769aa;
+    font-weight: bold;
+}
+
+/* 마커 색상 범례 */
+.legend {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.green {
+    background: green;
+}
+
+.yellow {
+    background: #ffd700;
+}
+
+.red {
+    background: red;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    .panel {
+        padding: 12px;
+    }
+
+    #map {
+        height: 400px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>GPS 데이터 분석 시스템</h1>
+
+<p>위도, 경도, 속도 데이터 조회 및 이동 경로 시각화</p>
+
+<div class="panel">
+    <h3>JSON 파일 불러오기</h3>
+
+    <input type="file" id="fileInput" accept=".json">
+
+    <p id="status" class="status">
+        기본 GPS 데이터를 불러오는 중...
+    </p>
+</div>
+
+<div class="panel">
+    <h3>데이터 요약</h3>
+
+    <div class="info">
+
+        <div>
+            <strong>전체 데이터 수</strong>
+            <span id="count">0</span>
+        </div>
+
+        <div>
+            <strong>평균 속도</strong>
+            <span id="avgSpeed">0</span>
+            <strong>km/h</strong>
+        </div>
+
+        <div>
+            <strong>최대 속도</strong>
+            <span id="maxSpeed">0</span>
+            <strong>km/h</strong>
+        </div>
+
+    </div>
+</div>
+
+<div class="panel">
+
+    <h3>GPS 이동 경로</h3>
+
+    <div id="map"></div>
+
+    <!-- 속도별 색상 범례 -->
+    <div class="legend">
+
+        <div class="legend-item">
+            <span class="legend-color green"></span>
+            18 km/h 이하
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-color yellow"></span>
+            18 초과 ~ 20 미만
+        </div>
+
+        <div class="legend-item">
+            <span class="legend-color red"></span>
+            20 km/h 이상
+        </div>
+
+    </div>
+
+</div>
+
+<div class="panel">
+
+    <h3>GPS 데이터 목록</h3>
+
+    <div class="table-wrap">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Speed (km/h)</th>
+                </tr>
+            </thead>
+
+            <tbody id="dataTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>
+
+// 기본 GPS 데이터 15개
+const gpsData = [
+    {latitude:42.363400, longitude:-71.098465, speed:21},
+    {latitude:42.363327, longitude:-71.097588, speed:23},
+    {latitude:42.363255, longitude:-71.096710, speed:17},
+    {latitude:42.363182, longitude:-71.095833, speed:22},
+    {latitude:42.363110, longitude:-71.094955, speed:14},
+    {latitude:42.363037, longitude:-71.094078, speed:16},
+    {latitude:42.362965, longitude:-71.093201, speed:18},
+    {latitude:42.362892, longitude:-71.092323, speed:22},
+    {latitude:42.362820, longitude:-71.091446, speed:17},
+    {latitude:42.362747, longitude:-71.090569, speed:23},
+    {latitude:42.362675, longitude:-71.089691, speed:14},
+    {latitude:42.362602, longitude:-71.088814, speed:19},
+    {latitude:42.362530, longitude:-71.087936, speed:16},
+    {latitude:42.362457, longitude:-71.087059, speed:16},
+    {latitude:42.362385, longitude:-71.086182, speed:21}
+];
+
+
+const map = L.map('map').setView(
+    [42.363400, -71.098465],
+    15
+);
+
+L.tileLayer(
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+    }
+).addTo(map);
+
+
+// 지도 타일 오류 확인
+map.on('tileerror', function() {
+    document.getElementById('status').textContent =
+        '지도 타일을 불러오지 못했습니다. 인터넷 연결을 확인하세요.';
+});
+
+
+// 경로 및 마커 저장
+let routeLine = null;
+let markers = [];
+
+
+// GPS 데이터 표시
+function displayData(data) {
+
+    const tbody = document.getElementById('dataTable');
+
+    tbody.innerHTML = '';
+
+    // 데이터 유효성 검사
+    const validData = data.filter(item => {
+
+        if (!item) return false;
+
+        return (
+            item.latitude !== null &&
+            item.longitude !== null &&
+            item.speed !== null &&
+            item.latitude !== undefined &&
+            item.longitude !== undefined &&
+            item.speed !== undefined &&
+            Number.isFinite(Number(item.latitude)) &&
+            Number.isFinite(Number(item.longitude)) &&
+            Number.isFinite(Number(item.speed)) &&
+            Number(item.latitude) >= -90 &&
+            Number(item.latitude) <= 90 &&
+            Number(item.longitude) >= -180 &&
+            Number(item.longitude) <= 180 &&
+            Number(item.speed) >= 0
+        );
+    });
+
+
+    if (validData.length === 0) {
+
+        document.getElementById('status').textContent =
+            '유효한 GPS 데이터가 없습니다.';
+
+        document.getElementById('count').textContent = 0;
+        document.getElementById('avgSpeed').textContent = 0;
+        document.getElementById('maxSpeed').textContent = 0;
+
+        if (routeLine) {
+            map.removeLayer(routeLine);
+            routeLine = null;
+        }
+
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+
+        return;
+    }
+
+
+    let totalSpeed = 0;
+    let maxSpeed = 0;
+
+    const coordinates = [];
+
+
+    // 기존 경로 삭제
+    if (routeLine) {
+        map.removeLayer(routeLine);
+        routeLine = null;
+    }
+
+    markers.forEach(marker => map.removeLayer(marker));
+
+    markers = [];
+
+
+    validData.forEach((item, index) => {
+
+        const lat = Number(item.latitude);
+        const lng = Number(item.longitude);
+        const speed = Number(item.speed);
+
+        totalSpeed += speed;
+
+        maxSpeed = Math.max(maxSpeed, speed);
+
+        coordinates.push([lat, lng]);
+
+
+        // 테이블 생성
+        const row = document.createElement('tr');
+
+        [index + 1, lat, lng, speed].forEach(value => {
+
+            const cell = document.createElement('td');
+
+            cell.textContent = value;
+
+            row.appendChild(cell);
+
+        });
+
+        tbody.appendChild(row);
+
+
+        // 속도에 따른 마커 색상
+        let color;
+
+        if (speed <= 18) {
+
+            color = 'green';
+
+        } else if (speed < 20) {
+
+            color = '#ffd700';
+
+        } else {
+
+            color = 'red';
+
+        }
+
+
+        // GPS 마커 생성
+        const marker = L.circleMarker(
+            [lat, lng],
+            {
+                radius: 7,
+                color: color,
+                fillColor: color,
+                fillOpacity: 0.85,
+                weight: 2
+            }
+        ).addTo(map);
+
+
+        // 마커 클릭 시 상세정보
+        marker.bindPopup(`
+            <b>GPS 위치 ${index + 1}</b><br>
+            위도: ${lat}<br>
+            경도: ${lng}<br>
+            속도: <b>${speed} km/h</b>
+        `);
+
+
+        markers.push(marker);
+
+    });
+
+
+    // 이동 경로 표시
+    routeLine = L.polyline(
+        coordinates,
+        {
+            color: 'blue',
+            weight: 4,
+            opacity: 0.8
+        }
+    ).addTo(map);
+
+
+    // 지도 영역 자동 조정
+    map.fitBounds(routeLine.getBounds(), {
+        padding: [30, 30]
+    });
+
+
+    // 웹 브라우저 지도 크기 재계산
+    requestAnimationFrame(() => {
+        map.invalidateSize();
+    });
+
+
+    // 데이터 요약
+    document.getElementById('count').textContent =
+        validData.length;
+
+    document.getElementById('avgSpeed').textContent =
+        (totalSpeed / validData.length).toFixed(2);
+
+    document.getElementById('maxSpeed').textContent =
+        maxSpeed.toFixed(2);
+
+
+    document.getElementById('status').textContent =
+        'GPS 데이터 로드 완료: ' + validData.length + '개';
+
+}
+
+
+// JSON 파일 업로드
+document.getElementById('fileInput')
+.addEventListener('change', function(event) {
+
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        try {
+
+            const data = JSON.parse(e.target.result);
+
+            if (!Array.isArray(data)) {
+
+                throw new Error(
+                    'JSON 데이터는 배열 형식이어야 합니다.'
+                );
+
+            }
+
+            displayData(data);
+
+        } catch(error) {
+
+            alert('JSON 파일 오류: ' + error.message);
+
+            document.getElementById('status').textContent =
+                '파일을 읽을 수 없습니다.';
+
+        }
+
+    };
+
+    reader.readAsText(file);
+
+});
+
+
+// 페이지 시작 시 기본 GPS 데이터 자동 표시
+window.addEventListener('load', function() {
+
+    displayData(gpsData);
+
+    // 브라우저 렌더링 이후 지도 크기 재조정
+    setTimeout(function() {
+
+        map.invalidateSize();
+
+    }, 300);
+
+});
+
+
+// 브라우저 화면 크기 변경 시 지도 재조정
+window.addEventListener('resize', function() {
+
+    map.invalidateSize();
+
+});
+
+</script>
+
+</body>
+</html>
